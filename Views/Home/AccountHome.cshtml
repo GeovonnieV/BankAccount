@@ -1,0 +1,23 @@
+<div>
+    <h1>Welcome, @ViewBag.UsersFirstName</h1>
+    <span>Current Balance: $@ViewBag.UsersBalance </span> 
+    <br>
+     @model Transaction
+    @* have a from to post a new transaction *@
+    <form asp-action="TransactionAdd" asp-controller="Home" method="post">
+        <span asp-validation-for="Amount"></span>
+        <label asp-for="Amount">Deposit/Withdraw</label>
+        <input type="number" asp-for="Amount">
+
+         <button type="submit">Submit</button>
+    </form>
+    <div>
+        @{
+            foreach (var item in ViewBag.UsersTransaction)
+            {
+                <p>@item.Amount</p>
+                <p>@item.CreatedAt</p>
+            }
+        }
+    </div>
+</div>
